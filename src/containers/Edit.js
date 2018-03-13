@@ -5,13 +5,19 @@ import Edit from "../components/Articles/Edit";
 const mapStateToProps = (state, { id }) => {
     const articles = state.get("articles");
     const article = articles.find(a => a.get("id") === +id);
-    const title = article.get("title");
-    const body = article.get("article");
-	// the fields the form should have
-	const fields = [
-	    { name: "title", label: "Title", value: title },
-	    { name: "article", label: "Article", value: body },
-	];
+    let fields = [];
+    if (article) {
+	    const title = article.get("title");
+	    const body = article.get("article");
+		// the fields the form should have
+		fields = [
+		    { name: "title", label: "Title", value: title },
+		    { name: "article", label: "Article", value: body },
+		];
+	}
+	else {
+		fields = null;
+	}
 
     return {
         fields: fields,
