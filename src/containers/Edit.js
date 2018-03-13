@@ -9,10 +9,12 @@ const mapStateToProps = (state, { id }) => {
     if (article) {
 	    const title = article.get("title");
 	    const body = article.get("article");
+	    const tags = article.get("tags");
 		// the fields the form should have
 		fields = [
 		    { name: "title", label: "Title", value: title },
 		    { name: "article", label: "Article", value: body },
+		    { name: "tags", label: "Tags", value: tags},
 		];
 	}
 	else {

@@ -24,7 +24,7 @@ const App = () => (
             <Route exact path="/" component={ Articles } />
 
             { /* edit page */}
-            <Route exact path="/articles/edit/:id" render={ ({ match }) => (
+            <Route exact path="/articles/:id/edit" render={ ({ match }) => (
                 <Edit id={ match.params.id } />
             )} />
             

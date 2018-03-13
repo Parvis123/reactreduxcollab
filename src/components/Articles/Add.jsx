@@ -6,6 +6,7 @@ import Form from "../Forms/Form";
 const fields = [
     { name: "title", label: "Title", value: "" },
     { name: "article", label: "Article", value: "" },
+    { name: "tags", label: "Tags", value: ""},
 ];
 
 // the add article component
