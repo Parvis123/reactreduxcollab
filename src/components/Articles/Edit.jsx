@@ -7,11 +7,11 @@ import Form from "../Forms/Form";
 
 
 // the add article component
-const Edit = ({ fields }) => !fields ? <FourOhFour /> : (
+const Edit = ({ fields, onSubmit, id }) => !fields ? <FourOhFour /> : (
     <div>
         <h2>Edit Article</h2>
 
-        <Form className="panel-body" fields={ fields } button="Edit Article" />
+        <Form id={ id } onSubmit={ onSubmit } className="panel-body" fields={ fields } button="Edit Article" />
     </div>
 );
 

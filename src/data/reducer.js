@@ -16,16 +16,23 @@ const createArticle = ({ title, article }) => {
     });
 };
 
+
 const addArticle = (state, action) => state.update("articles", articles => articles.push(createArticle(action)));
 
 const deleteArticle = (state, { id }) => {
    return state.update("articles", articles => articles.filter(a => a.get("id") !== id))
 }
 
+const editArticle = (state , { title, article, id }) => {
+    return state.update("articles", articles => articles.map(a => (a.get("id") === id) ? 
+            a.set("title", title).set("article", article) : a));
+}
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
         case "deleteArticle": return deleteArticle(state, action);
+        case "editArticle": return editArticle(state, action);
         default: return state;
     }
 }

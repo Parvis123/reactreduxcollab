@@ -12,3 +12,12 @@ export const addArticle = ({ title, article }) => {
         article: article,
     };
 };
+
+export const editArticle = ({ title, article }, id) => {
+	return {
+		type:"editArticle",
+		title: title,
+		article: article,
+		id: id,
+	};
+};

@@ -24,8 +24,8 @@ class Form extends Component {
             data[field.name] = field.value;
             return data;
         }, {});
-
-        this.props.onSubmit(data);
+        let { id } = this.props;
+        this.props.onSubmit(data, id);
     }
 
     change(e, i) {
