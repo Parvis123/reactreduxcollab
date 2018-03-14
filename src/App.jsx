@@ -12,6 +12,7 @@ import Articles from "./containers/Articles";
 import Article from "./containers/Article";
 import Add from "./components/Articles/Add";
 import Edit from "./containers/Edit";
+import Tags from "./containers/Tags";
 
 const App = () => (
     <div>
@@ -27,7 +28,12 @@ const App = () => (
             <Route exact path="/articles/:id/edit" render={ ({ match }) => (
                 <Edit id={ match.params.id } />
             )} />
-            
+
+            { /* matching tags list page */}
+             <Route exact path="/tags/:tag" render={ ({ match }) => (
+                <Tags tag={ match.params.tag } />
+            )} />
+
             { /* show the add form - has to come before :id so "add" doesn't get treated as an id  */ }
             <Route exact path="/articles/add" component={ Add } />
 
