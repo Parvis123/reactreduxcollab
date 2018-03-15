@@ -26,7 +26,7 @@ const App = () => (
 
             { /* edit page */}
             <Route exact path="/articles/:id/edit" render={ ({ match }) => (
-                <Edit id={ match.params.id } />
+                <Edit id={ +match.params.id } />
             )} />
 
             { /* matching tags list page */}
@@ -39,7 +39,7 @@ const App = () => (
 
             { /* show an individual article */ }
             <Route exact path="/articles/:id" render={ ({ match }) => (
-                <Article id={ match.params.id} />
+                <Article id={ +match.params.id} />
             )} />
 
             { /* 404 page */}
