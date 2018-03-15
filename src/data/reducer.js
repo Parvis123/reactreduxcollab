@@ -16,6 +16,14 @@ const createArticle = ({ title, article }) => {
     });
 };
 
+const createComment = (email, comment) => {
+    return Map({
+        email: email,
+        comment: comment,
+    });
+};
+
+
 
 const addArticle = (state, action) => state.update("articles", articles => articles.push(createArticle(action)));
 
@@ -28,11 +36,17 @@ const editArticle = (state , { title, article, id }) => {
             a.set("title", title).set("article", article) : a));
 }
 
+const addComment = (state, { email, comment, id }) => {
+    return state.update("articles", articles => articles.map(a => (a.get('id') === id) ? 
+        a.update("comments", comments => comments.push(createComment(email, comment))) : a ));
+}
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
         case "deleteArticle": return deleteArticle(state, action);
         case "editArticle": return editArticle(state, action);
+        case "addComment": return addComment(state, action);
         default: return state;
     }
 }
