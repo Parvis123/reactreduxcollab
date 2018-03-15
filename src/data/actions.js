@@ -5,19 +5,21 @@ export const deleteArticle = (id) => {
     };
 };
 
-export const addArticle = ({ title, article }) => {
+export const addArticle = ({ title, article, tags }) => {
     return {
         type: "addArticle",
         title: title,
         article: article,
+        tags: tags,
     };
 };
 
-export const editArticle = ({ title, article }, id) => {
+export const editArticle = ({ title, article, tags }, id) => {
 	return {
 		type:"editArticle",
 		title: title,
 		article: article,
+        tags: tags,
 		id: id,
 	};
 };

@@ -3,7 +3,7 @@ import { Map, List } from "immutable";
 
 let lastID = 2;
 
-const createArticle = ({ title, article }) => {
+const createArticle = ({ title, article, tags }) => {
     // up the ID by 1 every time
     lastID += 1;
 
@@ -12,7 +12,7 @@ const createArticle = ({ title, article }) => {
         title: title,
         article: article,
         comments: List(),
-        tags: List(),
+        tags: List([tags]),
     });
 };
 
@@ -31,9 +31,9 @@ const deleteArticle = (state, { id }) => {
    return state.update("articles", articles => articles.filter(a => a.get("id") !== id))
 }
 
-const editArticle = (state , { title, article, id }) => {
+const editArticle = (state , { title, article, tags, id }) => {
     return state.update("articles", articles => articles.map(a => (a.get("id") === id) ? 
-            a.set("title", title).set("article", article) : a));
+            a.set("title", title).set("article", article).set("tags", tags) : a));
 }
 
 const addComment = (state, { email, comment, id }) => {
