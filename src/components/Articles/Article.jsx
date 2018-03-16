@@ -16,7 +16,7 @@ class Article extends Component {
 
     render() {
         const { article, onClick, onSubmit, id } = this.props;
-        
+
         return (!article ? <FourOhFour /> : (
                     <div>
                         { /* the edit/delete buttons  */ }
@@ -41,5 +41,7 @@ class Article extends Component {
     }
 
 }
+
+
 
 export default Article;
