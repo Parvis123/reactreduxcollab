@@ -1,7 +1,7 @@
 // import our axios config file
 import axios from "../../axios";
 import { fromJS } from "immutable";
-import { setArticles, addArticle, setArticle } from "./state";
+import { setArticles, addArticle, setArticle, removeArticle } from "./state";
 
 export const getArticles = () => dispatch => {
     axios.get("/articles").then(response => {
@@ -29,5 +29,13 @@ export const postArticle = (data) => dispatch => {
 		const article = fromJS(response.data);
 		// dispatch the addArticle action, passing along the article Map
 		dispatch(addArticle(article));
+	});
+};
+
+export const deleteArticle = (id) => dispatch => {
+	axios.delete("/articles/" + id).then(response => {
+		const article = fromJS(response.data);
+		console.log(article);
+		dispatch(removeArticle(article));
 	});
 };

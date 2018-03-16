@@ -22,11 +22,10 @@ const createComment = (email, comment) => {
 
 
 
-const addArticle = (state, action) => state.update("articles", articles => articles.push(createArticle(action)));
+const addArticle = (state, action) => state.update("articles", articles => articles.set(action.id, createArticle(action)));
 
-const removeArticle = (state, { id }) => {
-   return state.update("articles", articles => articles.filter(a => a.get("id") !== id))
-}
+const removeArticle = (state, { id }) => state.update("articles", articles => articles.delete(id));
+
 
 const editArticle = (state , { title, article, tags, id }) => {
     return state.update("articles", articles => articles.map(a => (a.get("id") === id) ? 
