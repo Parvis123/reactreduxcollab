@@ -1,17 +1,14 @@
 export const removeArticle = (id) => {
 	return {
-        	type:"removeArticle",
-        	id : id,
+    	type:"removeArticle",
+    	id : id,
     };
 };
 
-export const addArticle = ({ title, article, tags, id }) => {
+export const addArticle = (article) => {
     return {
         type: "addArticle",
-        title: title,
         article: article,
-        tags: tags,
-        id: id,
     };
 };
 

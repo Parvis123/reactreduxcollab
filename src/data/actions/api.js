@@ -1,7 +1,7 @@
 // import our axios config file
 import axios from "../../axios";
 import { fromJS } from "immutable";
-import { setArticles, addArticle, setArticle, removeArticle } from "./state";
+import { setArticles, addArticle, setArticle, removeArticle, editArticle } from "./state";
 
 export const getArticles = () => dispatch => {
     axios.get("/articles").then(response => {
@@ -33,9 +33,21 @@ export const postArticle = (data) => dispatch => {
 };
 
 export const deleteArticle = (id) => dispatch => {
-	axios.delete("/articles/" + id).then(response => {
-		const article = fromJS(response.data);
-		console.log(article);
-		dispatch(removeArticle(article));
+	axios.delete("/articles/" + id).then(() => {
+		dispatch(removeArticle(id));
 	});
 };
+
+export const putArticle = ({ title, article, tags }, id) => dispatch => {
+	axios.put("/articles" + id, {
+			title: title,
+			article: article,
+			tags: tags,
+		}).then(response => {
+			const article = fromJS(response.data);
+			dispatch(editArticle(article));
+		});
+};
+
+
+

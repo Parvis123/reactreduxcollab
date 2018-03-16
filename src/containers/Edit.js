@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Edit from "../components/Articles/Edit";
-import { editArticle } from "../data/actions/state";
+import { putArticle } from "../data/actions/api";
 
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
@@ -31,7 +31,7 @@ const mapStateToProps = (state, { id }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSubmit: (data, id) => dispatch(editArticle(data, id)),
+        onSubmit: (data, id) => dispatch(putArticle(data, id)),
     };
 };
 

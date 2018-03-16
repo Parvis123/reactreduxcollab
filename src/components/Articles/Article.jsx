@@ -10,8 +10,7 @@ import Comments from "./Comments";
 class Article extends Component {
     
     componentDidMount() {
-        const { id } = this.props;
-        this.props.onLoad(id);
+        this.props.onLoad();
     }
 
     render() {

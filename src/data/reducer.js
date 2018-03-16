@@ -2,12 +2,9 @@
 import { Map, List } from "immutable";
 
 
-const createArticle = ({ title, article, id }) => {
+const createArticle = ({ article }) => {
 
-    return Map({
-        id: id,
-        title: title,
-        article: article,
+    return article.merge({
         comments: List(),
         tags: List(),
     });
@@ -22,7 +19,7 @@ const createComment = (email, comment) => {
 
 
 
-const addArticle = (state, action) => state.update("articles", articles => articles.set(action.id, createArticle(action)));
+const addArticle = (state, action) => state.update("articles", articles => articles.set(action.article.get("id"), createArticle(action)));
 
 const removeArticle = (state, { id }) => state.update("articles", articles => articles.delete(id));
 

@@ -13,11 +13,11 @@ const mapStateToProps = (state, { id }) => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, { id } ) => {
     return {
-        onClick: (id) => dispatch(deleteArticle(id)),
-        onSubmit: (data, id) => dispatch(addComment(data, id)),
-        onLoad: (id) => dispatch(getArticle(id)),
+        onClick: () => dispatch(deleteArticle(id)),
+        onSubmit: (data) => dispatch(addComment(data, id)),
+        onLoad: () => dispatch(getArticle(id)),
     };
 };
 
