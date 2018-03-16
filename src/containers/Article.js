@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import Article from "../components/Articles/Article";
-import { deleteArticle } from "../data/actions";
-import { addComment } from "../data/actions";
+import { removeArticle, addComment } from "../data/actions/state";
+import { getArticle } from "../data/actions/api";
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
 const mapStateToProps = (state, { id }) => {
     const articles = state.get("articles");
-    const article = articles.find(a => a.get("id") === +id);
+    const article = articles.get(id);
 
     return {
         article: article,
@@ -15,8 +15,9 @@ const mapStateToProps = (state, { id }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onClick: (id) => dispatch(deleteArticle(id)),
+        onClick: (id) => dispatch(removeArticle(id)),
         onSubmit: (data, id) => dispatch(addComment(data, id)),
+        onLoad: (id) => dispatch(getArticle(id)),
     };
 };
 

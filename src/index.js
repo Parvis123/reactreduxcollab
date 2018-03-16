@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";	
 import reducer from "./data/reducer";
 import initial from "./data/initial";
 import { Provider } from "react-redux";
@@ -13,12 +14,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 
 // import in Immutable Map and List for our dummy data
-import { Map, List } from "immutable";
+//import { Map, List } from "immutable";
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-    reducer,
-    initial,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+	reducer, 
+	initial, 
+	composeEnhancers(applyMiddleware(thunk))
 );
 
 

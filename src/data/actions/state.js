@@ -1,16 +1,17 @@
-export const deleteArticle = (id) => {
+export const removeArticle = (id) => {
 	return {
-        	type:"deleteArticle",
+        	type:"removeArticle",
         	id : id,
     };
 };
 
-export const addArticle = ({ title, article, tags }) => {
+export const addArticle = ({ title, article, tags, id }) => {
     return {
         type: "addArticle",
         title: title,
         article: article,
         tags: tags,
+        id: id,
     };
 };
 
@@ -30,5 +31,19 @@ export const addComment = ({ email, comment }, id) => {
         email: email,
         comment: comment,
         id: id,
+    };
+};
+
+export const setArticles = articles => {
+    return {
+        type: "setArticles",
+        articles: articles,
+    };
+};
+
+export const setArticle = article => {
+    return {
+        type: "setArticle",
+        article: article,
     };
 };

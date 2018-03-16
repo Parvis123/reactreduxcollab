@@ -1,18 +1,15 @@
-import initial from './initial';
+//import initial from './initial';
 import { Map, List } from "immutable";
 
-let lastID = 2;
 
-const createArticle = ({ title, article, tags }) => {
-    // up the ID by 1 every time
-    lastID += 1;
+const createArticle = ({ title, article, id }) => {
 
     return Map({
-        id: lastID,
+        id: id,
         title: title,
         article: article,
         comments: List(),
-        tags: List([tags]),
+        tags: List(),
     });
 };
 
@@ -27,7 +24,7 @@ const createComment = (email, comment) => {
 
 const addArticle = (state, action) => state.update("articles", articles => articles.push(createArticle(action)));
 
-const deleteArticle = (state, { id }) => {
+const removeArticle = (state, { id }) => {
    return state.update("articles", articles => articles.filter(a => a.get("id") !== id))
 }
 
@@ -41,12 +38,18 @@ const addComment = (state, { email, comment, id }) => {
         a.update("comments", comments => comments.push(createComment(email, comment))) : a ));
 }
 
+const setArticles = (state, { articles }) => state.set("titles", articles);
+
+const setArticle = (state, { article }) => state.update("articles", articles => articles.set(article.get("id"), article.set("comments", List())));
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "addArticle": return addArticle(state, action);
-        case "deleteArticle": return deleteArticle(state, action);
+        case "removeArticle": return removeArticle(state, action);
         case "editArticle": return editArticle(state, action);
         case "addComment": return addComment(state, action);
+        case "setArticles": return setArticles(state, action); 
+        case "setArticle": return setArticle(state, action); 
         default: return state;
     }
 }
